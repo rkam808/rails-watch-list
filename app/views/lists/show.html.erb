@@ -1,0 +1,17 @@
+<div class="container">
+  <h1><%= List.find(params[:id]).name %></h1>
+  <h3>All Movies</h3>
+  <ul>
+    <% @list.bookmarks.each do |bookmark| %>
+      <li>
+        <div>
+          <%= image_tag Movie.find(bookmark.movie_id).poster_url, alt: "alttext" %>
+          <p><%= bookmark.comment %></p>
+          <%= link_to "Delete this movie", bookmark_path(bookmark), method: :delete, data: { confirm: "Delete #{Movie.find(bookmark.movie_id).title}?"} %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <p class="link"><%= link_to "Add a New Bookmark", new_list_bookmark_path(params[:id]) %></p>
+  <p class="link"><%= link_to "Back to All Lists", lists_path %></p>
+</div>
