@@ -2,10 +2,25 @@
 <div class="container">
   <h1>Movie Lists</h1>
   <h3>All Lists</h3>
-  <ul>
+  <div class="row">
     <% @lists.each do |list| %>
-      <li><%= link_to list.name, list_path(list) %></li>
+      <%= link_to list_path(list) do %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-img-top col-6 col-md-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? cl_image_path(list.photo.key) : image_path("https://bellyfull.net/wp-content/uploads/2019/09/Perfect-Stovetop-Popcorn-blog-2-500x500.jpg") %>)">
+            <div class="card-body">
+              <p class="card-text"><%= list.name %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  </ul>
+  </div>
   <p class="link"><%= link_to "Create a New Movie List", new_list_path %></p>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
 </div>
